@@ -1,8 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getCountryList } from '../service/getCountries.js'
 
-function useGetData ({ value, region }) {
+function useGetData () {
   const [countries, setCountries] = useState()
+  const [value, setValue] = useState('jordan')
+  const [region, setRegion] = useState('All')
+
+  const updateValue = (newValue) => {
+    setValue(newValue)
+  }
+
+  const updateRegion = (newRegion) => {
+    setRegion(newRegion)
+  }
+
   useEffect(() => {
     getCountryList()
       .then((data) => setCountries(data))
@@ -16,10 +27,11 @@ function useGetData ({ value, region }) {
       flag: country.flags.png,
       population: country.population,
       region: country.region,
-      capital: country.capital
+      capital: country.capital,
+      flagAlt : country.flags.alt
     }
   })
-//   passing the filter data with the input value and the regions
+  //   passing the filter data with the input value and the regions
   const filter = mappedList?.filter((item) => {
     if (region === 'All') {
       return item.name.toLowerCase().includes(value.toLowerCase())
@@ -27,6 +39,6 @@ function useGetData ({ value, region }) {
       return item.region === region && item.name.toLowerCase().includes(value.toLowerCase())
     }
   })
-  return { countries: filter, setCountries }
+  return { countries: filter, updateValue, updateRegion }
 }
 export default useGetData

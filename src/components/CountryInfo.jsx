@@ -1,16 +1,17 @@
-export function Country ({ countries, color }) {
+export function Country ({ countries, color, name }) {
   return (
-    <ul className='w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-10 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]' onClick={() => {
-      setShow(!show)
-    }}>
-
+    <ul className='w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-10 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]'>
       {countries?.map((country, index) => {
         return (
-          <li className='rounded-md shadow-2xl' style={{ backgroundColor: color }} key={index}>
+          <li
+            className='rounded-md shadow-2xl' style={{ backgroundColor: color }} key={index} onClick={() => {
+              name(country.name)
+            }}
+          >
             <figure>
               <img
                 src={country.flag}
-                alt={country.name}
+                alt={country.flagAlt}
                 className='w-full object-cover h-56 rounded-t-md'
               />
             </figure>
