@@ -28,7 +28,7 @@ function useGetData () {
       population: country.population,
       region: country.region,
       capital: country.capital,
-      flagAlt : country.flags.alt
+      flagAlt: country.flags.alt
     }
   })
   //   passing the filter data with the input value and the regions

@@ -15,7 +15,6 @@ export function useCountryData () {
     getCountry({ countryName: name }).then((json) => setData(json))
   }, [name])
 
-
   const mappedCountry = data?.map((country) => {
     return {
       name: country.name.common,
@@ -28,10 +27,10 @@ export function useCountryData () {
       currency: country.currencies,
       languages: country.languages,
       borders: country.borders,
-      flag : country.flags.png,
-      imageAlt : country.flags.alt
+      flag: country.flags.png,
+      imageAlt: country.flags.alt
     }
   })
 
-  return { data:mappedCountry , updateName }
+  return { data: mappedCountry, updateName }
 }
