@@ -6,7 +6,7 @@ export function FullPage ({bodyColor, bgColor, country, textColor, goBack }) {
       {country?.map(data => {
 
         return (
-          <div className='w-[90vw] h-auto flex flex-col mt-28 md:mt-0 md:flex-row md:justify-center md:gap-20 relative' key={data.name}>
+          <div className='w-[90vw] h-auto flex flex-col mt-32 md:mt-0 md:flex-row md:justify-center md:gap-20 relative' key={data.name}>
 
             <figure className='max-w-[400px] relative'>
               <img src={data.flag} alt={data.imageAlt} className='w-full' />
