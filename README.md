@@ -12,7 +12,6 @@ Your users should be able to:
  - Search **for** a country using an `input` field and made a search.
  - Filter countries by region.
  - Toggle the **color** scheme between light and dark mode *(optional)*
-### Todo
 - Click on a country to see more detailed information on a separate page
 
 
