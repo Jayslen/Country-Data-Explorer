@@ -3,7 +3,7 @@ import { getCountry } from '../service/getSingleCountry'
 
 export function useCountryData () {
   const [data, setData] = useState()
-  const [name, setName] = useState('jordan')
+  const [name, setName] = useState('')
   const updateName = (name) => {
     setName(name)
   }
