@@ -13,7 +13,7 @@ function App () {
   const { countries, updateRegion, updateValue } = useGetData()
   const { changeTheme, elmColor, elmText, darkMode,bodyBg } = useTheme()
   const { data, updateName } = useCountryData()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   // update the input value in order to filter
   const handleChange = (event) => {
