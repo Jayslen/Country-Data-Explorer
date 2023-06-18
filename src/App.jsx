@@ -14,6 +14,7 @@ function App () {
   const { changeTheme, elmColor, elmText, darkMode } = useTheme()
   const { data, updateName } = useCountryData()
   const [open, setOpen] = useState(true)
+
   // update the input value in order to filter
   const handleChange = (event) => {
     updateValue(event.target.value)
@@ -42,7 +43,7 @@ function App () {
           </p>
         </div>
       </header>
-      <main className='px-14 mt-6 h-[50vh] overflow-hidden' style={{ color: elmText }}>
+      <main className='px-14 mt-6' style={{ color: elmText }}>
         <header className='flex flex-col gap-4 justify-between items-center md:gap-0 md:flex-row'>
           <input type='text' placeholder='Search for a country' className='font-Nunito p-2 rounded-sm' style={{ backgroundColor: elmColor }} onChange={handleChange} />
           <Filter update={handleClick} color={elmColor} />
@@ -50,7 +51,7 @@ function App () {
         <section className='mt-6 w-full'>
           {countries ? <Country countries={countries} color={elmColor} name={getName} /> : <Loading />}
         </section>
-        {open && <FullPage bgColor={elmColor} country={data} />}
+        {open && <FullPage bgColor={elmColor} textColor={elmText} country={data} />}
       </main>
     </>
   )

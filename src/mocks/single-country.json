@@ -1,31 +1,22 @@
-[
-    {
-        "name": "Jordan",
-        "population": 10203140,
-        "region": "Asia",
-        "subregion": "Western Asia",
-        "capital": "Amman",
-        "topLevelDomain": ".jo",
-        "currency": {
-            "JOD": {
-                "name": "Jordanian dinar",
-                "symbol": "د.ا"
-            }
-        },
-        "languages": {
-            "ara": "Arabic"
-        },
-        "borders": [
-            "IRQ",
-            "ISR",
-            "PSE",
-            "SAU",
-            "SYR"
-        ],
-        "flag": {
-            "png": "https://flagcdn.com/w320/jo.png",
-            "svg": "https://flagcdn.com/jo.svg",
-            "alt": "The flag of Jordan is composed of three equal horizontal bands of black, white and green, with a red isosceles triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about half the width of the field and bears a small seven-pointed white star at its center."
-        }
-    }
-]
+[{
+    "name": "Belgium",
+    "population": 11555997,
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "capital": "Brussels",
+    "topLevelDomain": ".be",
+    "currency": "Euro",
+    "languages": [
+        "German",
+        "French",
+        "Dutch"
+    ],
+    "borders": [
+        "FRA",
+        "DEU",
+        "LUX",
+        "NLD"
+    ],
+    "flag": "https://flagcdn.com/be.svg",
+    "imageAlt": "The flag of Belgium is composed of three equal vertical bands of black, yellow and red."
+}]

@@ -3,7 +3,7 @@ import { getCountryList } from '../service/getCountries.js'
 
 function useGetData () {
   const [countries, setCountries] = useState()
-  const [value, setValue] = useState('jordan')
+  const [value, setValue] = useState('')
   const [region, setRegion] = useState('All')
 
   const updateValue = (newValue) => {
