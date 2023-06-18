@@ -1,52 +1,29 @@
 import data from '../mocks/single-country.json'
+import { Borders, List } from './fullpage/CountryDataLists'
 
-const LiElm = ({text, info, children}) => {
+
+
+
+export function FullPage ({bodyColor, bgColor, country, textColor, goBack }) {
   return (
-    <li>
-      <h4 className='font-bold text-lg inline-block'>{text} :</h4>
-      <span> {info}</span>
-      {children}
-    </li>
-  )
-}
+    <section className='w-screen h-screen grid place-content-center absolute right-0 top-0 px-20' style={{ backgroundColor: bodyColor , color : textColor}}>
 
+      {country?.map(data => {
 
-export function FullPage ({ bgColor, country, textColor }) {
-  return (
-    <section className='w-screen h-screen grid place-content-center absolute right-0 top-0 px-20' style={{ backgroundColor: bgColor , color : textColor}}>
-      {data?.map(data => {
         return (
-          <div className='w-[90vw] h-[90vh] flex items-center justify-center gap-20'>
-            <figure className='w-[400px]'>
+          <div className='w-[90vw] h-auto flex flex-col mt-16 md:flex-row md:justify-center md:gap-20 relative' key={data.name}>
+
+            <figure className='max-w-[400px] relative self-center'>
               <img src={data.flag} alt={data.imageAlt} className='w-full' />
+            <button className='absolute -top-14 left-0 px-4 py-2 cursor-pointer transition-all hover:brightness-75' style={{backgroundColor: bgColor}} onClick={goBack}>Go back</button>
             </figure>
-            <div className='w-[500px]'>
-            <h2 className='text-4xl font-bold mb-5'>{data.name}</h2>
-            <div className='flex justify-between'>
-              <ul className='flex flex-col gap-3'>
-                <LiElm text={'Native Name'} info={data.name}/>
-                <LiElm text={'Population'} info={data.population.toLocaleString()}/>
-                <LiElm text={'Region'} info={data.region}/>
-                <LiElm text={'Sub Region'} info={data.subregion}/>
-                <LiElm text={'Capital'} info={data.capital}/>
-              </ul>
-              <ul className='flex flex-col gap-3'>
-              <LiElm text={'Top Level Domain'} info={data.topLevelDomain}/>
-              <LiElm text={'Currencies'} info={data.currency}/>
-              <LiElm text={'Languages'} info={data.languages.join(', ')}/>
-              </ul>
+
+            <div className='max-w-[400px] md:w-[500px]'>
+            <h2 className='text-3xl font-bold md:mb-3'>{data.name}</h2>
+           <List data={data}/>
+           <Borders data={data} bgColor={bgColor}/>
             </div>
-            <div className='mt-7'>
-              <h3 className='font-bold text-lg'>Border:</h3>
-              <ul className='flex gap-4'>
-                {data.borders.map((content) => {
-                  return(
-                    <li className='shadow-xl px-4 py-2 rounded-sm' style={{backgroundColor: bgColor}}>{content}</li>
-                  )
-                })}
-              </ul>
-            </div>
-            </div>
+
           </div>
         )
       })}

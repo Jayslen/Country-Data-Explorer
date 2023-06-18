@@ -11,7 +11,7 @@ import { useState } from 'react'
 window.document.body.style.backgroundColor = '#202d36'
 function App () {
   const { countries, updateRegion, updateValue } = useGetData()
-  const { changeTheme, elmColor, elmText, darkMode } = useTheme()
+  const { changeTheme, elmColor, elmText, darkMode,bodyBg } = useTheme()
   const { data, updateName } = useCountryData()
   const [open, setOpen] = useState(true)
 
@@ -30,7 +30,13 @@ function App () {
   // getCountryName
   const getName = (name) => {
     updateName(name)
+    setOpen(!open)
   }
+  // goBack funtion
+  const closeWindow = () => {
+    setOpen(!open)
+  }
+
   return (
     <>
       <header className='flex justify-between items-center p-5 shadow-xl relative z-20' style={{ backgroundColor: elmColor, color: elmText }}>
@@ -43,7 +49,7 @@ function App () {
           </p>
         </div>
       </header>
-      <main className='px-14 mt-6' style={{ color: elmText }}>
+      <main className='px-14 mt-6' style={{ color: elmText , height:`${open ? '50vh' : 'full'}`, overflow: `${open ? 'hidden': 'visible'}` }}>
         <header className='flex flex-col gap-4 justify-between items-center md:gap-0 md:flex-row'>
           <input type='text' placeholder='Search for a country' className='font-Nunito p-2 rounded-sm' style={{ backgroundColor: elmColor }} onChange={handleChange} />
           <Filter update={handleClick} color={elmColor} />
@@ -51,7 +57,7 @@ function App () {
         <section className='mt-6 w-full'>
           {countries ? <Country countries={countries} color={elmColor} name={getName} /> : <Loading />}
         </section>
-        {open && <FullPage bgColor={elmColor} textColor={elmText} country={data} />}
+        {open && <FullPage bgColor={elmColor} textColor={elmText} country={data} bodyColor={bodyBg} goBack={closeWindow} />}
       </main>
     </>
   )

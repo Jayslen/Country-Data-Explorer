@@ -5,7 +5,7 @@ export function Country ({ countries, color, name }) {
         return (
           <li
             className='rounded-md shadow-2xl' style={{ backgroundColor: color }} key={index} onClick={() => {
-              name(country.name)
+              name(country.name.toLowerCase())
             }}
           >
             <figure>
