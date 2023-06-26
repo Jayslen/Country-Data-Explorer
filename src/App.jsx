@@ -10,10 +10,10 @@ import { Header } from './components/HeroHeader'
 
 window.document.body.style.backgroundColor = '#202d36'
 function App () {
-  const { countries, updateRegion, updateValue } = useGetData()
-  const { changeTheme, elmColor, elmText, darkMode,bodyBg } = useTheme()
-  const { data, updateName } = useCountryData()
   const [open, setOpen] = useState(false)
+  const { countries, updateRegion, updateValue } = useGetData()
+  const { changeTheme, elmColor, elmText, darkMode, bodyBg } = useTheme()
+  const { data, updateName } = useCountryData({ open })
 
   // update the input value in order to filter
   const handleChange = (event) => {
@@ -39,8 +39,8 @@ function App () {
 
   return (
     <>
-  <Header elmColor={elmColor} handleTheme={handleTheme} elmText={elmText} darkMode={darkMode}/>
-      <main className='px-14 mt-6' style={{ color: elmText , height:`${open ? '50vh' : 'full'}`, overflow: `${open ? 'hidden': 'visible'}` }}>
+      <Header elmColor={elmColor} handleTheme={handleTheme} elmText={elmText} darkMode={darkMode} />
+      <main className='px-14 mt-6' style={{ color: elmText, height: `${open ? '50vh' : 'full'}`, overflow: `${open ? 'hidden' : 'visible'}` }}>
         <header className='flex flex-col gap-4 justify-between items-center md:gap-0 md:flex-row'>
           <input type='text' placeholder='Search for a country' className='font-Nunito p-2 rounded-sm' style={{ backgroundColor: elmColor }} onChange={handleChange} />
           <Filter update={handleClick} color={elmColor} />
