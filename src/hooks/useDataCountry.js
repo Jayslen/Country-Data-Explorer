@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getCountryList } from '../service/getCountries.js'
 
 function useGetData () {
@@ -31,14 +31,26 @@ function useGetData () {
       flagAlt: country.flags.alt
     }
   })
+
   //   passing the filter data with the input value and the regions
-  const filter = mappedList?.filter((item) => {
-    if (region === 'All') {
-      return item.name.toLowerCase().includes(value.toLowerCase())
-    } else {
-      return item.region === region && item.name.toLowerCase().includes(value.toLowerCase())
-    }
-  })
+  const filter = useMemo(() => {
+    return mappedList?.filter((item) => {
+      if (region === 'All') {
+        return item.name.toLowerCase().includes(value.toLowerCase())
+      } else {
+        return item.region === region && item.name.toLowerCase().includes(value.toLowerCase())
+      }
+    })
+  }, [value, region])
+
+  // const filter = mappedList?.filter((item) => {
+  //   console.log('render filter')
+  //   if (region === 'All') {
+  //     return item.name.toLowerCase().includes(value.toLowerCase())
+  //   } else {
+  //     return item.region === region && item.name.toLowerCase().includes(value.toLowerCase())
+  //   }
+  // })
   return { countries: filter, updateValue, updateRegion }
 }
 export default useGetData
