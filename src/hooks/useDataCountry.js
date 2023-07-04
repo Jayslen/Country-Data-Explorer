@@ -20,8 +20,7 @@ function useGetData () {
       .catch((e) => setCountries('error'))
   }, [])
 
-  const list = countries
-  const mappedList = list?.map((country) => {
+  const mappedList = countries?.map((country) => {
     return {
       name: country.name.common,
       flag: country.flags.png,
@@ -34,6 +33,7 @@ function useGetData () {
 
   //   passing the filter data with the input value and the regions
   const filter = useMemo(() => {
+    console.log('render filters');
     return mappedList?.filter((item) => {
       if (region === 'All') {
         return item.name.toLowerCase().includes(value.toLowerCase())
@@ -51,6 +51,6 @@ function useGetData () {
   //     return item.region === region && item.name.toLowerCase().includes(value.toLowerCase())
   //   }
   // })
-  return { countries: filter, updateValue, updateRegion }
+  return { countries : filter || mappedList, updateValue, updateRegion }
 }
 export default useGetData
