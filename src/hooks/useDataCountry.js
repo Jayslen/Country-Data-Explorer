@@ -33,7 +33,6 @@ function useGetData () {
 
   //   passing the filter data with the input value and the regions
   const filter = useMemo(() => {
-    console.log('render filters');
     return mappedList?.filter((item) => {
       if (region === 'All') {
         return item.name.toLowerCase().includes(value.toLowerCase())
