@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
-
+import { countryContext } from '../context/CountryContext'
+import { useContext } from 'react'
 export function Country({ countries, color }) {
+  const { setCountryName } = useContext(countryContext)
   return (
     <ul className="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-10 md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
       {countries?.map((country, index) => {
@@ -16,6 +18,9 @@ export function Country({ countries, color }) {
                   src={country.flag}
                   alt={country.flagAlt}
                   className="w-full object-cover h-56 rounded-t-md"
+                  onClick={() => {
+                    setCountryName(country.name)
+                  }}
                 />
               </Link>
             </figure>

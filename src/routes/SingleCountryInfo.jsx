@@ -1,57 +1,67 @@
 import { Borders, List } from '../components/fullpage/CountryDataLists'
-import Mock from '../mocks/single-country.json'
 import { Link } from 'react-router-dom'
 import { Header } from '../components/HeroHeader'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getCountry } from '../service/getSingleCountry'
-import { data } from 'autoprefixer'
+import { Loading } from '../components/Loading'
+import { countryContext } from '../context/CountryContext'
 
 export function CountryInfo() {
-  const [country, setCountry] = useState([])
+  const [country, setCountry] = useState()
+  const { countryName } = useContext(countryContext)
   useEffect(() => {
-    getCountry({ countryName: 'spain' }).then((data) => setCountry(data))
+    getCountry({ countryName: countryName }).then((data) => setCountry(data[0]))
   }, [])
-  console.log(country)
-  const mappedCountry = country?.map((item) => {
-    return {
-      name: item.name.common,
-      population: item.population,
-      region: item.region,
-      subregion: item.subregion,
-      capital: item.capital[0],
-      topLevelDomain: item.tld,
-      // currency: item.curren
-      // languages: item.
-    }
-  })
+  const mappedCountry = country
+    ? {
+        name: country.name.common,
+        // nativeName: country.name.nativeName,
+        population: country.population.toLocaleString(),
+        region: country.region,
+        subregion: country.subregion,
+        capital: country.capital[0],
+        topLevelDomain: country.tld[0],
+        currency: Object.values(country.currencies)[0].name,
+        languages: Object.values(country.languages).join(', '),
+        borders: country.borders,
+        flag: country.flags.svg,
+        imageAlt: country.flags.alt,
+      }
+    : undefined
   return (
     <>
       <Header />
-      <section className="w-screen h-screen absolute grid place-content-center right-0 top-0 px-20">
-        {country?.map((data) => {
-          return (
-            <div
-              className="w-[90vw] h-auto flex flex-col mt-32 md:mt-0 md:flex-row md:justify-center md:gap-20 relative"
-              key={data.name}
-            >
-              <figure className="max-w-[400px] relative">
-                <img src={data.flag} alt={data.imageAlt} className="w-full" />
-                <Link to={'/'}>
-                  <div className="absolute -top-14 left-0 px-4 py-2 cursor-pointer transition-all hover:brightness-75">
-                    Go back
-                  </div>
-                </Link>
-              </figure>
-
-              <div className="max-w-[400px] md:w-[500px]">
-                <h2 className="text-3xl font-bold md:mb-3">{data.name}</h2>
-                <List data={data} />
-                <Borders data={data} />
-              </div>
+      <main className="h-[90vh] grid place-content-center">
+        {country ? (
+          <section
+            className="flex flex-col md:flex-row md:justify-center md:gap-20"
+            key={mappedCountry.name}
+          >
+            <div className="max-w-[400px]">
+              <Link to={'/'}>
+                <div className="px-4 py-2 cursor-pointer transition-all hover:brightness-75">
+                  Go back
+                </div>
+              </Link>
+              <img
+                src={mappedCountry.flag}
+                alt={mappedCountry.imageAlt}
+                className="w-full"
+              />
             </div>
-          )
-        })}
-      </section>
+
+            <div className="max-w-[400px] md:w-[500px]">
+              <h2 className="text-3xl font-bold md:mb-3">
+                {mappedCountry.name}
+              </h2>
+              <List data={mappedCountry} />
+              <Borders data={mappedCountry} />
+            </div>
+          </section>
+        ) : (
+          <Loading />
+        )}
+      </main>
     </>
   )
 }

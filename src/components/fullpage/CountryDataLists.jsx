@@ -20,7 +20,7 @@ export function List({ data }) {
       </ul>
       <ul className="flex flex-col gap-1">
         <LiElm text="Top Level Domain" info={data.topLevelDomain} />
-        {/* <LiElm text='Currencies' info={data.currency} /> */}
+        <LiElm text='Currencies' info={data.currency} />
         <LiElm text="Languages" info={data.languages} />
       </ul>
     </div>

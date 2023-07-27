@@ -3,7 +3,7 @@ import { IconSunFilled, IconMoonFilled } from '@tabler/icons-react'
 export function Header({ elmColor, elmText, handleTheme, darkMode }) {
   return (
     <header
-      className="flex justify-between items-center p-5 shadow-xl relative z-20"
+      className="flex justify-between items-center px-5 shadow-xl h-[10vh]"
       style={{ backgroundColor: elmColor, color: elmText }}
     >
       <h1 className="text-xl font-bold">Where in the wordl?</h1>
